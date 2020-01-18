@@ -12,15 +12,19 @@
     "core-js": "^3.4.4",
     "vue": "^2.6.10",
     "vue-router": "^3.1.5",
+    "vuetify": "^2.2.4",
+    "vuetify-loader": "^1.4.3",
     "vuex": "^3.1.2"
   },
   "devDependencies": {
+    "@mdi/font": "^4.7.95",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "material-design-icons-iconfont": "^5.0.1",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
