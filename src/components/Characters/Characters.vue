@@ -58,13 +58,13 @@
         </v-row>
         <v-row justify="center">
             <v-col cols="12" md="2">
-                <v-btn color="#546E7A">
+                <v-btn color="#546E7A" @click="prevPage">
                     <v-icon left>mdi-arrow-left-drop-circle-outline</v-icon>
                     Prev
                 </v-btn>
             </v-col>
             <v-col cols="12" md="2">
-                <v-btn color="#546E7A">
+                <v-btn color="#546E7A" @click="nextPage">
                     Next
                     <v-icon right>mdi-arrow-right-drop-circle-outline</v-icon>
                 </v-btn>
@@ -79,7 +79,14 @@
     export default {
         name: "Characters",
         data: () => ({}),
-        methods: {},
+        methods: {
+            nextPage() {
+                this.$store.dispatch('callPage', this.info.next);
+            },
+            prevPage() {
+                this.$store.dispatch('callPage', this.info.prev);
+            }
+        },
         computed: {
             ...mapState({
                 characters: state => state.characters.characters,

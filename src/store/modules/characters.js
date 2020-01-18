@@ -20,6 +20,16 @@ const actions = {
             /*eslint-disable*/
                 console.log(error)
             );
+    },
+    callPage({commit}, pageUrl){
+        return url.get(pageUrl)
+            .then(response => {
+                commit('callPage', response.data)
+            })
+            .catch(error =>
+                /*eslint-disable*/
+                console.log(error)
+            );
     }
 };
 
@@ -27,6 +37,10 @@ const mutations = {
     loadCharactersAndInfo(state, characters) {
         state.characters = characters.results;
         state.info = characters.info
+    },
+    callPage(state, characters) {
+        state.characters = characters.results;
+        state.info = characters.info;
     }
 };
 
