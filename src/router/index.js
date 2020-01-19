@@ -11,9 +11,9 @@ const routes = [
         component: () => import(/* webpackChunkName: "characters" */ "../components/Characters/Characters")
     },
     {
-        path: '/episodes',
-        name: 'episodes',
-        component: () => import(/* webpackChunkName: "episodes" */ "../components/Episodes/Episodes")
+        path: '/episode/:id',
+        name: 'episode',
+        component: () => import(/* webpackChunkName: "episode" */ "../components/Episode/Episode")
     },
     {
         path: '/locations',

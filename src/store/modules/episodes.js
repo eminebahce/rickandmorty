@@ -2,16 +2,35 @@ import { url }  from './characters';
 
 const state = {
     episodes: [],
-    info: {}
+    getCharactersInEpisode : []
 };
 
-const getters = {};
+const getters = {
+    parseCharacterIds: state => {
+        const charactersInEpisode = state.episodes.characters;
+        let characterIds = [];
+        charactersInEpisode.map(character => {
+            characterIds.push(character.replace('https://rickandmortyapi.com/api/character/',''));
+        });
+        return characterIds;
+    }
+};
 
 const actions = {
-    loadEpisodes({commit}) {
-        return url.get('/episode')
+    loadEpisodes({commit}, path) {
+        return url.get(path)
             .then(response => {
                 commit('loadEpisodes', response.data)
+            })
+            .catch(error => {
+                /*eslint-disable*/
+                console.log(error)
+            })
+    },
+    getCharactersInEpisode({commit},characterIds) {
+        return url.get(`character/${characterIds}`)
+            .then(response => {
+                commit('getCharactersInEpisode', response.data)
             })
             .catch(error => {
                 /*eslint-disable*/
@@ -21,9 +40,11 @@ const actions = {
 };
 
 const mutations = {
-    loadEpisodes(state, episodes) {
-        state.episodes = episodes.results;
-        state.info = episodes.info;
+    loadEpisodes(state, episodeInfo) {
+        state.episodes = episodeInfo;
+    },
+    getCharactersInEpisode(state, charactersInEpisode) {
+        state.getCharactersInEpisode = charactersInEpisode;
     }
 };
 

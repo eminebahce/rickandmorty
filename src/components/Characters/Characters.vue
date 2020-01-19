@@ -1,10 +1,11 @@
 <template>
     <v-container>
+        <h1>Rick And Morty</h1>
         <v-row>
             <v-col
                     :key="character.id"
                     cols="12"
-                    sm="4"
+                    sm="6"
                     v-for="character in characters"
             >
                 <v-card
@@ -15,7 +16,7 @@
                         ripple
                         shaped
                 >
-                    <div class="d-flex flex-no-wrap justify-space-between">
+                    <div class="d-flex justify-space-between">
                         <div>
                             <v-card-title v-text="character.name"></v-card-title>
                             <template v-if="character.status === 'Alive'">
@@ -42,6 +43,16 @@
                                 <div>Origin: {{character.origin.name}}</div>
                                 <v-divider class="mx-xl-4"></v-divider>
                                 <div>Last Location: {{character.location.name}}</div>
+                                <v-divider class="mx-xl-4"></v-divider>
+                                <div>
+                                    <router-link :to="{name: 'episode', params: {id: parseInt(character.episode[character.episode.length-1].replace('https://rickandmortyapi.com/api/episode/', ''))}}">
+                                        Last episode:
+                                        <span v-if="episodeDictionary.size > 0">
+                                            {{character.episode[character.episode.length-1].replace('https://rickandmortyapi.com/api/episode/', '')}}
+                                            {{episodeDictionary.get(parseInt(character.episode[character.episode.length-1].replace('https://rickandmortyapi.com/api/episode/', '')))}}
+                                        </span>
+                                    </router-link>
+                                </div>
                                 <v-divider class="mx-xl-4"></v-divider>
                             </v-card-text>
                         </div>
@@ -74,30 +85,62 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState, mapGetters} from 'vuex';
 
     export default {
         name: "Characters",
         data: () => ({}),
         methods: {
             nextPage() {
-                this.$store.dispatch('callPage', this.info.next);
+                this.$store.dispatch('callPage', this.info.next).then(
+                    () =>{
+                        this.$store.dispatch('getLastEpisodeInfo', this.parseLastEpisodeIds);
+                    }
+                );
             },
             prevPage() {
-                this.$store.dispatch('callPage', this.info.prev);
+                this.$store.dispatch('callPage', this.info.prev).then(
+                    () =>{
+                        this.$store.dispatch('getLastEpisodeInfo', this.parseLastEpisodeIds);
+                    }
+                );
             }
         },
         computed: {
             ...mapState({
                 characters: state => state.characters.characters,
-                info: state => state.characters.info
-            })
+                info: state => state.characters.info,
+                lastEpisodeInfo: state => state.characters.lastEpisodeInfo,
+                episodeDictionary: state => state.characters.episodeDictionary
+            }),
+            ...mapGetters([
+                'parseLastEpisodeIds'
+            ])
         },
         created() {
-            this.$store.dispatch('loadCharactersAndInfo');
+            this.$store.dispatch('loadCharactersAndInfo').then(
+                () =>{
+                    this.$store.dispatch('getLastEpisodeInfo', this.parseLastEpisodeIds);
+                }
+            );
         }
     }
 </script>
 
 <style scoped>
+    @font-face {
+        font-family: 'SEGA LOGO FONT';
+        font-style: normal;
+        font-weight: normal;
+        src: local('SEGA LOGO FONT'), url('SEGA.woff') format('woff');
+    }
+    h1 {
+        font-family: "SEGA LOGO FONT";
+        font-weight: 200;
+        color: #455A64;
+        position: relative;
+        margin-left: 380px;
+        margin-bottom: 50px;
+        padding: 50px 0px 0px 0px;
+    }
 </style>
