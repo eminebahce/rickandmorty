@@ -9,16 +9,17 @@
                     v-for="character in characters"
             >
                 <v-card
-                        color='#263238'
-                        dark
+                        color='#78909C'
+                        light
                         hover
                         flat
                         ripple
                         shaped
+                        :to="{name: 'episode', params: {id: parseInt(character.episode[character.episode.length-1].replace('https://rickandmortyapi.com/api/episode/', ''))}}"
                 >
                     <div class="d-flex justify-space-between">
                         <div>
-                            <v-card-title v-text="character.name"></v-card-title>
+                            <v-card-title style="font-family: SEGA LOGO FONT; font-size: 30px" v-text="character.name"></v-card-title>
                             <template v-if="character.status === 'Alive'">
                                 <v-chip class="ml-3" outlined pill>
                                     {{character.status}}
@@ -36,24 +37,16 @@
                                 </v-chip>
                             </template>
                             <v-card-text>
-                                <div>Species: {{character.species}}</div>
-                                <v-divider class="mx-xl-4"></v-divider>
-                                <div>Gender: {{character.gender}}</div>
-                                <v-divider class="mx-xl-4"></v-divider>
-                                <div>Origin: {{character.origin.name}}</div>
-                                <v-divider class="mx-xl-4"></v-divider>
-                                <div>Last Location: {{character.location.name}}</div>
-                                <v-divider class="mx-xl-4"></v-divider>
+                                <div><span style="font-family: SEGA LOGO FONT">Species:</span> {{character.species}}</div>
+                                <div><span style="font-family: SEGA LOGO FONT">Gender:</span> {{character.gender}}</div>
+                                <div><span style="font-family: SEGA LOGO FONT">Origin:</span> {{character.origin.name}}</div>
+                                <div><span style="font-family: SEGA LOGO FONT">Last Location:</span> {{character.location.name}}</div>
                                 <div>
-                                    <router-link :to="{name: 'episode', params: {id: parseInt(character.episode[character.episode.length-1].replace('https://rickandmortyapi.com/api/episode/', ''))}}">
-                                        Last episode:
+                                    <span style="font-family: SEGA LOGO FONT">Last episode:</span>
                                         <span v-if="episodeDictionary.size > 0">
-                                            {{character.episode[character.episode.length-1].replace('https://rickandmortyapi.com/api/episode/', '')}}
                                             {{episodeDictionary.get(parseInt(character.episode[character.episode.length-1].replace('https://rickandmortyapi.com/api/episode/', '')))}}
                                         </span>
-                                    </router-link>
                                 </div>
-                                <v-divider class="mx-xl-4"></v-divider>
                             </v-card-text>
                         </div>
                         <v-avatar
@@ -68,13 +61,13 @@
             </v-col>
         </v-row>
         <v-row justify="center">
-            <v-col cols="12" md="2">
+            <v-col v-if="info.prev" cols="12" md="2">
                 <v-btn color="#546E7A" @click="prevPage">
                     <v-icon left>mdi-arrow-left-drop-circle-outline</v-icon>
                     Prev
                 </v-btn>
             </v-col>
-            <v-col cols="12" md="2">
+            <v-col v-if="info.next" cols="12" md="2">
                 <v-btn color="#546E7A" @click="nextPage">
                     Next
                     <v-icon right>mdi-arrow-right-drop-circle-outline</v-icon>
@@ -137,9 +130,10 @@
     h1 {
         font-family: "SEGA LOGO FONT";
         font-weight: 200;
+        font-size: 50px;
         color: #455A64;
         position: relative;
-        margin-left: 380px;
+        text-align: center;
         margin-bottom: 50px;
         padding: 50px 0px 0px 0px;
     }

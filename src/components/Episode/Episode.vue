@@ -4,32 +4,31 @@
             <v-col cols="12"
                    sm="6"
             >
-                <v-card color='#263238'
-                        class="mb-10 mt-10"
-                        dark
+                <h1>Episode Details</h1>
+                <v-card
+                        class="mb-2 mt-10"
+                        color='#78909C'
+                        light
                         hover
                         flat
                         ripple
                         shaped
                 >
-                    <v-card-title>
-                            <span>Episode Info</span>
-                    </v-card-title>
                     <v-card-text>
-                        <div>Episode Name: {{episodes.name}}</div>
-                        <v-divider class="mx-xl-4"></v-divider>
-                        <div>Air Date: {{episodes.air_date}}</div>
-                        <v-divider class="mx-xl-4"></v-divider>
-                        <div>Episode: {{episodes.episode}}</div>
-                        <v-divider class="mx-xl-4"></v-divider>
-                        <div>Created: {{episodes.created}}</div>
-                        <v-divider class="mx-xl-4"></v-divider>
+                        <div><span style="font-family: SEGA LOGO FONT;" class="black--text"> Episode:</span> {{episodes.episode}}</div>
+                        <div><span style="font-family: SEGA LOGO FONT" class="black--text"> Episode Name: </span> {{episodes.name}}</div>
+                        <div><span style="font-family: SEGA LOGO FONT" class="black--text">Air Date: </span> {{episodes.air_date}}</div>
+                        <div><span style="font-family: SEGA LOGO FONT" class="black--text">Created: </span> {{episodes.created | moment("dddd, MMMM Do YYYY")}}</div>
                     </v-card-text>
                 </v-card>
-                <h1>Characters in this episode</h1>
+                <h1>Characters</h1>
                 <v-row justify="center">
                     <v-card
-                            style="margin-top: 70px"
+                            color='#78909C'
+                            style="margin-top: 10px"
+                            flat
+                            ripple
+                            shaped
                     >
                         <v-list>
                             <v-list-item
@@ -98,10 +97,10 @@
     h1 {
         font-family: "SEGA LOGO FONT";
         font-weight: 200;
+        font-size: 50px;
         color: #455A64;
-        position: absolute;
-        margin: auto;
-        padding: 0px 0px 0px 0px;
+        position: relative;
+        text-align: center;
     }
 
 </style>

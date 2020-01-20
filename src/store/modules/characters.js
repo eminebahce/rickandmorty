@@ -68,7 +68,7 @@ const mutations = {
     getLastEpisodeInfo(state, lastEpisodeInfo) {
        state.episodeDictionary = new Map();
        lastEpisodeInfo.map(episode => {
-           state.episodeDictionary.set(episode.id, episode.name);
+           state.episodeDictionary.set(episode.id, episode.episode + " - " +episode.name);
        })
     },
 };
