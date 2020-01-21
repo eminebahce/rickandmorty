@@ -7,10 +7,12 @@
             <v-col
                     :key="character.id"
                     cols="12"
-                    sm="6"
+                    sm="3"
                     v-for="character in characters"
             >
                 <v-card
+                        class="mx-auto"
+                        max-width="400"
                         color='#78909C'
                         light
                         hover
@@ -19,9 +21,11 @@
                         shaped
                         :to="{name: 'episode', params: {id: parseInt(character.episode[character.episode.length-1].replace('https://rickandmortyapi.com/api/episode/', ''))}}"
                 >
+                    <v-img :src="character.image"></v-img>
+
                     <div class="d-flex justify-space-between">
                         <div>
-                            <v-card-title style="font-family: SEGA LOGO FONT; font-size: 30px" v-text="character.name"></v-card-title>
+                            <v-card-title style="font-family: SEGA LOGO FONT; font-size: 20px" v-text="character.name"></v-card-title>
                             <template v-if="character.status === 'Alive'">
                                 <v-chip class="ml-3" outlined pill>
                                     {{character.status}}
@@ -51,13 +55,6 @@
                                 </div>
                             </v-card-text>
                         </div>
-                        <v-avatar
-                                class="ma-3"
-                                size="125"
-                                tile
-                        >
-                            <v-img :src="character.image"></v-img>
-                        </v-avatar>
                     </div>
                 </v-card>
             </v-col>

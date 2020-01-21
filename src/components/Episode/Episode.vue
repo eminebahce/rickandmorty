@@ -8,13 +8,15 @@
                 <h1 @click="$router.back()">Rick And Morty</h1>
                 </router-link>
                 <v-card
-                        class="mb-2 mt-10"
+                        class="mx-auto mb-2 mt-10"
+                        max-width="400"
                         color='#78909C'
                         light
                         flat
                         shaped
                 >
-                    <v-card-title><span style="font-family: SEGA LOGO FONT;" class="black--text"> Episode Details</span></v-card-title>
+                    <v-img src="https://www.indiewire.com/wp-content/uploads/2017/07/rick-and-morty.png?w=780"></v-img>
+                    <v-card-title><span style="font-family: SEGA LOGO FONT;"> Episode Details</span></v-card-title>
                     <v-card-text class="black--text">
                         <div><span style="font-family: SEGA LOGO FONT">Episode:</span> <span>{{episodes.episode}}</span></div>
                         <div><span style="font-family: SEGA LOGO FONT">Episode Name: </span> {{episodes.name}}</div>
@@ -107,7 +109,7 @@
     h2 {
         font-family: "SEGA LOGO FONT";
         font-weight: 200;
-        font-size: 40px;
+        font-size: 30px;
         color: #455A64;
         position: relative;
         text-align: center;

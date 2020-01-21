@@ -13,7 +13,7 @@ export default {
   name: 'app',
     data: () => {
       return {
-          image: 'https://cine.nl/wp-content/uploads/2017/11/RickMorty.jpg'
+          image: 'https://st2.depositphotos.com/5623324/8241/v/600/depositphotos_82411380-stock-video-cartoon-moon-in-the-night.jpg'
       }
     }
 }
