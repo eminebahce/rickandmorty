@@ -22,9 +22,6 @@
                         :to="{name: 'episode', params: {id: parseInt(character.episode[character.episode.length-1].replace('https://rickandmortyapi.com/api/episode/', ''))}}"
                 >
                     <v-img :src="character.image"></v-img>
-
-                    <div class="d-flex justify-space-between">
-                        <div>
                             <v-card-title style="font-family: SEGA LOGO FONT; font-size: 20px" v-text="character.name"></v-card-title>
                             <template v-if="character.status === 'Alive'">
                                 <v-chip class="ml-3" outlined pill>
@@ -54,8 +51,6 @@
                                         </span>
                                 </div>
                             </v-card-text>
-                        </div>
-                    </div>
                 </v-card>
             </v-col>
         </v-row>
@@ -118,7 +113,7 @@
                     this.$store.dispatch('getLastEpisodeInfo', this.parseLastEpisodeIds);
                 }
             );
-        }
+        },
     }
 </script>
 

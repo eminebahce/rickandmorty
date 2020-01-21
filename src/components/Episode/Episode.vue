@@ -9,7 +9,7 @@
                 </router-link>
                 <v-card
                         class="mx-auto mb-2 mt-10"
-                        max-width="400"
+                        max-width="500"
                         color='#78909C'
                         light
                         flat
