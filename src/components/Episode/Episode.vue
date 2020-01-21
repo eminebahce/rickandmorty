@@ -4,24 +4,25 @@
             <v-col cols="12"
                    sm="6"
             >
-                <h1>Episode Details</h1>
+                <router-link to="/">
+                <h1 @click="$router.back()">Rick And Morty</h1>
+                </router-link>
                 <v-card
                         class="mb-2 mt-10"
                         color='#78909C'
                         light
-                        hover
                         flat
-                        ripple
                         shaped
                 >
-                    <v-card-text>
-                        <div><span style="font-family: SEGA LOGO FONT;" class="black--text"> Episode:</span> {{episodes.episode}}</div>
-                        <div><span style="font-family: SEGA LOGO FONT" class="black--text"> Episode Name: </span> {{episodes.name}}</div>
-                        <div><span style="font-family: SEGA LOGO FONT" class="black--text">Air Date: </span> {{episodes.air_date}}</div>
-                        <div><span style="font-family: SEGA LOGO FONT" class="black--text">Created: </span> {{episodes.created | moment("dddd, MMMM Do YYYY")}}</div>
+                    <v-card-title><span style="font-family: SEGA LOGO FONT;" class="black--text"> Episode Details</span></v-card-title>
+                    <v-card-text class="black--text">
+                        <div><span style="font-family: SEGA LOGO FONT">Episode:</span> <span>{{episodes.episode}}</span></div>
+                        <div><span style="font-family: SEGA LOGO FONT">Episode Name: </span> {{episodes.name}}</div>
+                        <div><span style="font-family: SEGA LOGO FONT">Air Date: </span> {{episodes.air_date}}</div>
+                        <div><span style="font-family: SEGA LOGO FONT">Created: </span> {{episodes.created | moment("dddd, MMMM Do YYYY")}}</div>
                     </v-card-text>
                 </v-card>
-                <h1>Characters</h1>
+                <h2>Episode Characters</h2>
                 <v-row justify="center">
                     <v-card
                             color='#78909C'
@@ -101,6 +102,17 @@
         color: #455A64;
         position: relative;
         text-align: center;
+        cursor: pointer;
     }
-
+    h2 {
+        font-family: "SEGA LOGO FONT";
+        font-weight: 200;
+        font-size: 40px;
+        color: #455A64;
+        position: relative;
+        text-align: center;
+    }
+    a {
+        color: #455A64;
+    }
 </style>

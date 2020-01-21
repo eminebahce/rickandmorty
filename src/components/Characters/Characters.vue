@@ -1,6 +1,8 @@
 <template>
     <v-container>
-        <h1>Rick And Morty</h1>
+        <router-link to="/">
+            <h1 @click="returnToHomePage">Rick And Morty</h1>
+        </router-link>
         <v-row>
             <v-col
                     :key="character.id"
@@ -36,7 +38,7 @@
                                     </v-icon>
                                 </v-chip>
                             </template>
-                            <v-card-text>
+                            <v-card-text class="black--text">
                                 <div><span style="font-family: SEGA LOGO FONT">Species:</span> {{character.species}}</div>
                                 <div><span style="font-family: SEGA LOGO FONT">Gender:</span> {{character.gender}}</div>
                                 <div><span style="font-family: SEGA LOGO FONT">Origin:</span> {{character.origin.name}}</div>
@@ -97,6 +99,9 @@
                         this.$store.dispatch('getLastEpisodeInfo', this.parseLastEpisodeIds);
                     }
                 );
+            },
+            returnToHomePage() {
+                this.$store.dispatch('loadCharactersAndInfo');
             }
         },
         computed: {
@@ -136,5 +141,9 @@
         text-align: center;
         margin-bottom: 50px;
         padding: 50px 0px 0px 0px;
+        cursor: pointer;
+    }
+    a {
+        color: #455A64;
     }
 </style>
