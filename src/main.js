@@ -3,7 +3,6 @@ import App from './App.vue';
 import store from '../src/store/index';
 import router from '../src/router/index';
 import vuetify from "./plugins/vuetify";
-//import moment from 'vue-moment';
 import 'vuetify/dist/vuetify.min.css'
 
 Vue.use(require('vue-moment'));

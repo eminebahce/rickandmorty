@@ -1,27 +1,27 @@
 import axios from 'axios';
+
 const baseURL = "https://rickandmortyapi.com/api/";
 
 export const url = axios.create({baseURL: baseURL});
 
 const state = {
-    characters : [],
+    characters: [],
     info: {},
     lastEpisodeInfo: [],
     episodeDictionary: new Map()
 };
 
-const  getters = {
+const getters = {
     parseLastEpisodeIds: state => {
         const allCharacters = state.characters;
-        const lastEpisodesOfCharacters = new Set ([]);
+        const lastEpisodesOfCharacters = new Set([]);
         allCharacters.map(character => {
             lastEpisodesOfCharacters.add(
-                character.episode[character.episode.length-1]
+                character.episode[character.episode.length - 1]
                     .replace('https://rickandmortyapi.com/api/episode/', ''))
         });
         return Array.from(lastEpisodesOfCharacters);
     }
-
 };
 
 const actions = {
@@ -31,11 +31,11 @@ const actions = {
                 commit('loadCharactersAndInfo', response.data)
             })
             .catch(error =>
-            /*eslint-disable*/
+                /*eslint-disable*/
                 console.log(error)
             );
     },
-    callPage({commit}, pageUrl){
+    callPage({commit}, pageUrl) {
         return url.get(pageUrl)
             .then(response => {
                 commit('callPage', response.data)
@@ -66,10 +66,10 @@ const mutations = {
 
     },
     getLastEpisodeInfo(state, lastEpisodeInfo) {
-       state.episodeDictionary = new Map();
-       lastEpisodeInfo.map(episode => {
-           state.episodeDictionary.set(episode.id, episode.episode + " - " +episode.name);
-       })
+        state.episodeDictionary = new Map();
+        lastEpisodeInfo.map(episode => {
+            state.episodeDictionary.set(episode.id, episode.episode + " - " + episode.name);
+        })
     },
 };
 

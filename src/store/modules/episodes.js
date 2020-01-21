@@ -1,8 +1,8 @@
-import { url }  from './characters';
+import {url} from './characters';
 
 const state = {
     episodes: [],
-    getCharactersInEpisode : []
+    getCharactersInEpisode: []
 };
 
 const getters = {
@@ -10,7 +10,7 @@ const getters = {
         const charactersInEpisode = state.episodes.characters;
         let characterIds = [];
         charactersInEpisode.map(character => {
-            characterIds.push(character.replace('https://rickandmortyapi.com/api/character/',''));
+            characterIds.push(character.replace('https://rickandmortyapi.com/api/character/', ''));
         });
         return characterIds;
     }
@@ -27,7 +27,7 @@ const actions = {
                 console.log(error)
             })
     },
-    getCharactersInEpisode({commit},characterIds) {
+    getCharactersInEpisode({commit}, characterIds) {
         return url.get(`character/${characterIds}`)
             .then(response => {
                 commit('getCharactersInEpisode', response.data)

@@ -5,14 +5,14 @@
                    sm="6"
             >
                 <router-link to="/">
-                <h1 @click="$router.back()">Rick And Morty</h1>
+                    <h1 @click="$router.back()">Rick And Morty</h1>
                 </router-link>
                 <v-card
                         class="mx-auto mb-2 mt-10"
-                        max-width="500"
                         color='#78909C'
-                        light
                         flat
+                        light
+                        max-width="500"
                         shaped
                 >
                     <v-img src="https://www.indiewire.com/wp-content/uploads/2017/07/rick-and-morty.png?w=780"></v-img>
@@ -28,24 +28,22 @@
                 <v-row justify="center">
                     <v-card
                             color='#78909C'
-                            style="margin-top: 10px"
                             flat
                             ripple
                             shaped
+                            style="margin-top: 10px"
                     >
                         <v-list>
                             <v-list-item
-                                    v-for="character in getCharactersInEpisode"
                                     :key="character.id"
+                                    v-for="character in getCharactersInEpisode"
                             >
                                 <v-list-item-icon>
                                     <v-icon color="pink">mdi-star</v-icon>
                                 </v-list-item-icon>
-
                                 <v-list-item-content>
                                     <v-list-item-title v-text="character.name"></v-list-item-title>
                                 </v-list-item-content>
-
                                 <v-list-item-avatar>
                                     <v-img :src="character.image"></v-img>
                                 </v-list-item-avatar>
@@ -53,7 +51,6 @@
                         </v-list>
                     </v-card>
                 </v-row>
-
             </v-col>
         </v-row>
     </v-container>
@@ -61,6 +58,7 @@
 
 <script>
     import {mapState, mapGetters} from 'vuex';
+
     export default {
         name: "Episodes",
         data: function () {
@@ -80,8 +78,7 @@
         },
         created() {
             this.routeId = this.$route.path;
-            this.$store.dispatch('loadEpisodes', this.routeId).
-            then(
+            this.$store.dispatch('loadEpisodes', this.routeId).then(
                 () => {
                     this.$store.dispatch('getCharactersInEpisode', this.parseCharacterIds)
                 }
@@ -97,6 +94,7 @@
         font-weight: normal;
         src: local('SEGA LOGO FONT'), url('SEGA.woff') format('woff');
     }
+
     h1 {
         font-family: "SEGA LOGO FONT";
         font-weight: 200;
@@ -106,6 +104,7 @@
         text-align: center;
         cursor: pointer;
     }
+
     h2 {
         font-family: "SEGA LOGO FONT";
         font-weight: 200;
@@ -114,6 +113,7 @@
         position: relative;
         text-align: center;
     }
+
     a {
         color: #455A64;
     }
